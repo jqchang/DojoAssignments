@@ -11,3 +11,10 @@ git commit -m "added readme.me"
 (realized that I haven't hooked it up to GitHub yet)
 git remote add origin https://github.com/jqchang/DojoAssignments.git
 git push -u origin master
+(log in to github on windows)
+(now checking to see if I know how to update changes)
+cd WebFundamentals/Git
+git add DojoAssignmentRepo.txt
+git commit -m "added new file DojoAssignmentRepo.txt to verify i know how to update github after repo creation"
+git push -u origin master
+(checked github, found file)
