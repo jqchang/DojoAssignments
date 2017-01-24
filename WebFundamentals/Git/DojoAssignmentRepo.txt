@@ -1,0 +1,13 @@
+Created new repository in GitHub account
+cd desktop/DojoAssignments
+git init
+git add .
+git status
+git commit -m "adding folders to github"
+touch readme.md
+(edited readme.md in Atom)
+git add readme.md
+git commit -m "added readme.me"
+(realized that I haven't hooked it up to GitHub yet)
+git remote add origin https://github.com/jqchang/DojoAssignments.git
+git push -u origin master
