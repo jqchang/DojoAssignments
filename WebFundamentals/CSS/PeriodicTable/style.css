@@ -1,0 +1,182 @@
+/* CSS Mini Reset */
+/* TAKEN FROM http://www.vcarrer.com/2010/05/css-mini-reset.html */
+
+
+html, body, div, form, fieldset, legend, label
+{
+ margin: 0;
+ padding: 0;
+}
+
+table
+{
+ border-collapse: collapse;
+ border-spacing: 0;
+}
+
+th, td
+{
+ text-align: left;
+ vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6, th, td, caption { font-weight:normal; }
+
+img { border: 0; }
+
+/* END CSS MINI RESET */
+
+html {
+  height: 100%;
+  font-family: "arial", sans-serif;
+  display: flex;
+  vertical-align: top;
+}
+
+ul {
+  list-style: none;
+  font-size: 8pt;
+  color: red;
+  margin-left: 0px;
+  margin: 0px;
+  padding: 0px 0px;
+}
+
+ol {
+  list-style: none;
+  font-size: 8pt;
+  color: red;
+  margin-left: 0px;
+  margin: 0px;
+  padding: 0px 0px;
+}
+
+ol li {
+  vertical-align: bottom;
+  display: inline-block;
+  text-align: center;
+  height: 40px;
+  width: 36px;
+  padding: 5px;
+}
+
+li {
+  vertical-align: bottom;
+  display: inline-block;
+  text-align: center;
+  height: 45px;
+  width: 42px;
+  margin: 0px;
+}
+
+.element li{
+  color: black;
+  font-size: 8pt;
+  padding: 0px;
+  margin: 1px;
+  border: 1px black solid;
+}
+
+.element li h1 {
+  font-weight: bold;
+  color: navy;
+  font-size: 12pt;
+  padding: 0px;
+  margin: 0px;
+  display: block;
+}
+
+.top-half {
+  display: block;
+}
+
+.s-block {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+}
+
+.s-block .element li {
+  background-color: #aaaaff;
+}
+
+.sidebar {
+  display: inline-block;
+  height: 100%;
+}
+
+.sidebar li {
+  display: block;
+}
+
+.d-block {
+  display: inline-block;
+  margin-left: 20px;
+  height: 100%;
+  vertical-align: top;
+}
+
+.d-block .element {
+  margin-top: 147px;
+}
+
+.d-block .element li {
+  background-color: #ffaaaa;
+}
+
+.p-block {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+}
+
+.p-block .element {
+  text-align: right;
+}
+.p-block .element li {
+  text-align: center;
+  background-color: #ffffaa;
+}
+
+
+.f-block {
+  margin-top: 20px;
+  display: block;
+}
+
+.f-block li {
+  display: inline-block;
+  width: 100%;
+}
+
+
+.f-block ul {
+  width: 120px;
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+
+.f-block ol {
+  width: 10px;
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.f-block .element {
+  width: 80%;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 22px;
+  padding: 0px;
+}
+.f-block .element ul {
+  width: 100%;
+}
+.f-block .element li {
+  background-color: #aaffaa;
+  height: 45px;
+  width: 42px;
+}
