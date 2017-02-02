@@ -1,0 +1,51 @@
+html {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  vertical-align: top;
+}
+#wrapper {
+  display: inline-block;
+  width: 65%;
+  height: 900px;
+  overflow-y: scroll;
+}
+img {
+  width: 100px;
+  height: 100px;
+}
+#dex, #landing, #loading {
+  vertical-align: top;
+  display: none;
+  width: 30%;
+  border: 4px red solid;
+}
+#dex {
+  padding: 20px;
+  text-align: center;
+}
+#dex h1, li, ul {
+  text-align: left;
+}
+
+#dex img {
+  text-align: center;
+  border: 1px black solid;
+}
+
+#stats {
+  text-align: left;
+  margin: 20px;
+}
+
+#stats tr td:nth-child(1){
+  text-align: right;
+}
+#stats tr td:nth-child(3){
+  display: inline-block;
+  background-color: red;
+}
+
+ul {
+  list-style-type: none;
+}
