@@ -15,11 +15,13 @@ $(document).ready(function() {
     $("#loading").css("display", "inline-block");
     var urlstr = $(this).attr("src");
     var i = Number(urlstr.substring(28, urlstr.length-4));
+    // i = $('this').attr("id");
     // console.log("Loading...");
     $.get("http://pokeapi.co/api/v1/pokemon/"+i, function(data) {
       // console.log("Name: " + data.name);
 
       /* Picture, name, types, size */
+      console.log(data);
       $("#dex img").attr("src", urlstr);
       $("#dex h1").text("#"+data.pkdx_id+": "+data.name);
       $("#types li:nth-child(1)").text("Type 1: " + data.types[0].name[0].toUpperCase() + data.types[0].name.substring(1));
@@ -56,6 +58,6 @@ $(document).ready(function() {
       $("#loading").css("display", "none");
       $("#dex").show();
       $("#dex").css("display", "inline-block");
-    });
+    }, "json");
   });
 });
