@@ -1,0 +1,8 @@
+.houses img {
+  vertical-align: middle;
+  width: 22%;
+  height: 250px;
+  margin: 1%;
+  display: inline-block;
+  border: 2px black solid;
+}
