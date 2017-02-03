@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add User</title>
+    <style type="text/css">
+      html {
+        width: 100%;
+      }
+      h1 {
+        margin: 0px;
+      }
+      input {
+        color: #dddddd;
+        margin: 5px;
+      }
+      form {
+        border-top: 2px black solid;
+        text-align: right;
+      }
+      table {
+          /*border-collapse: collapse;*/
+      }
+
+      table, th, td {
+          border: 1px solid black;
+      }
+      div {
+        width: 400px;
+      }
+      .submit {
+        color: black;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var blank_serial = $('form').serialize();
+        $('form').submit(function() {
+          if(!($('form').serialize() === blank_serial)) {
+            $('tbody').append(
+              "<tr>\n"+
+                "<td>"+$('#first_name').val()+"</td>"+
+                "<td>"+$('#last_name').val()+"</td>"+
+                "<td>"+$('#email').val()+"</td>"+
+                "<td>"+$('#phone').val()+"</td>"+
+              "</tr>"
+            );
+            $('form')[0].reset();
+            $('input').css("color","#dddddd");
+            $('.submit').css("color","black");
+          }
+          else {
+            alert("Please enter user information!");
+          }
+          // for(var i in $('input')) {
+          //   console.log(i);
+          // }
+          return false;
+        });
+
+        $('input').focusin(function(){
+          if($(this).val() === $(this).attr('default')) {
+            $(this).val("");
+            $(this).css("color","black");
+          }
+        });
+        $('input').focusout(function(){
+          if($(this).val() === "" && $(this).attr("type") !== "submit") {
+            $(this).css("color","#dddddd");
+            $(this).val($(this).attr("default"));
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <table>
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email Address</th>
+          <th>Contact #</th>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <h1>Add User</h1>
+      <form>
+        First Name:<input type="text" name="first_name" id="first_name" value="First Name" default="First Name"/><br>
+        Last Name:<input type="text" name="last_name" id="last_name" value="Last Name" default="Last Name"/><br>
+        Email Address:<input type="text" name="email" id="email" value="Email Address" default="Email Address"/><br>
+        Contact No.:<input type="text" name="phone" id="phone" value="Phone #" default="Phone #"/><br>
+        <input type="submit" class="submit">
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dice Roller</title>
+    <style type="text/css">
+    .red {
+      color: red;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+      var nextdice = 1;
+
+      $(document).ready(function() {
+        $('#add').click(function() {
+          var nmin = 1+Number($("#bonus").val());
+          var nmax = Number($("#nextmax").val())+Number($("#bonus").val());
+          var nlab = $("#nextlabel").val();
+          $('ol').append("<li>"+nlab+": min=<input type=\"number\" id=\"min"+nextdice+"\" value=\""+nmin+"\"/>"+
+                "max=<input type=\"number\" id=\"max"+nextdice+"\" value=\""+nmax+"\"/>"+
+                "<span id=\"v"+nextdice+"\">value=0</span></li>");
+          nextdice++;
+        });
+        $('#roll').click(function() {
+          var total = 0;
+          for(var i = 1; i < nextdice; i++) {
+            var max = $("#max"+i).val();
+            var min = $("#min"+i).val();
+            roll = Math.floor(Number(min)+(Math.random()*(max-min+1)));
+            total += roll;
+            $('#v'+i).text("value="+roll);
+          }
+          $('#total').text("Total: " + total);
+        });
+        $('.reset').click(function() {
+          $('ol').html("");
+          nextdice = 1;
+          $('#total').text("Total: 0");
+          $('#nextlabel').val("Dice");
+          $('#nextmin').val(1);
+          $('#nextmax').val(6);
+        });
+        function hidetext() {
+          $('#hidethis').hide();
+          $('#hidetext').text("Show text");
+          $('#hidetext').unbind("click", hidetext);
+          $('#hidetext').bind("click",showtext);
+        };
+        function showtext() {
+          $('#hidethis').show();
+          $('#hidetext').text("Hide text");
+          $('#hidetext').unbind("click",showtext);
+          $('#hidetext').bind("click",hidetext);
+        };
+        function fadetext() {
+          $('#fadethis').fadeOut();
+          $('#fadetext').text("Fade text");
+          $('#fadetext').unbind("click", fadetext);
+          $('#fadetext').bind("click",unfadetext);
+        };
+        function unfadetext() {
+          $('#fadethis').fadeIn();
+          $('#fadetext').text("Unfade text");
+          $('#fadetext').unbind("click",unfadetext);
+          $('#fadetext').bind("click",fadetext);
+        };
+        $('#toggletext').click(function() {
+          $('#togglethis').toggle();
+        });
+        $('#slidetoggletext').click(function() {
+          $('#slidetogglethis').slideToggle();
+        });
+        function uptext() {
+          console.log("up!");
+          $('#slidethis').slideUp();
+          $('#slidetext').text("Slide Down");
+          $('#slidetext').unbind("click",uptext);
+          $('#slidetext').bind("click",downtext);
+        };
+        function downtext() {
+          console.log("down!");
+          $('#slidethis').slideDown();
+          $('#slidetext').text("Slide up");
+          $('#slidetext').unbind("click",downtext);
+          $('#slidetext').bind("click",uptext);
+        };
+        $('#hidetext').click(hidetext);
+        $('#slidetext').click(uptext);
+        $('#fadetext').click(fadetext);
+        $('#redtext').click(function() {
+          $('#redthis').addClass("red");
+        });
+        $('#before').click(function() {
+          $('h1').before("<p>Heads up!</p>");
+        });
+        $('#after').click(function() {
+          $('h1').before("<p>Look out below!</p>");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Dice Roller</h1>
+    <p>Label: <input type="text" id="nextlabel" value="Dice"></p>
+    <p>Max Roll: <input type="number" id="nextmax" value=6></p>
+    <p>Flat Bonus: <input type="number" id="bonus" value=0></p>
+    <p>
+      <button id="add">Add Dice!</button>
+      <button class="reset">Reset</button>
+    </p>
+    <ol><!-- JQUery adds dice fields here! --></ol>
+    <span id="total">Total: 0</span>
+    <p><button id="roll">Roll!</button><button class="reset">Reset</button></p>
+    <h1>Other Functions</h1>
+    <p><button id="hidetext">Hide text</button><span id="hidethis">This text will be hidden</span></p>
+    <p><button id="toggletext">Toggle text</button><span id="togglethis">This text will be toggled</span></p>
+    <p><button id="slidetext">Slide text</button><span id="slidethis">This text will be slide-hidden</span></p>
+    <p><button id="slidetoggletext">Slide Toggle text</button><span id="slidetogglethis">This text will be slide toggled</span></p>
+    <p><button id="fadetext">Fade text</button><span id="fadethis">This text will be faded</span></p>
+    <p><button id="redtext">Red text</button><span id="redthis">This text will be red</span></p>
+    <p><button id="before">Before</button></p>
+    <p><button id="after">After</button></p>
+  </body>
+</html>
