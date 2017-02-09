@@ -1,0 +1,24 @@
+td:nth-child(1) {
+  text-align: right;
+}
+
+.errors, td:nth-child(3) {
+  color: red;
+}
+
+tbody {
+  text-align: left;
+}
+
+form {
+  width: 330px;
+  text-align: right;
+}
+
+.submit {
+  margin-right: 20px;
+}
+
+li {
+  text-align: left;
+}
