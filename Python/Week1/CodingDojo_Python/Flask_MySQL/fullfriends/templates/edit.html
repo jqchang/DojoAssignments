@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Friend</title>
+    <style type="text/css">
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      border: 1px black solid;
+    }
+    td:nth-child(1) {
+      font-weight: bold;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $("input").focusin(function() {
+        if($(this).val() == $(this).attr("current")) {
+          $(this).val("");
+        }
+      });
+      $("input").focusout(function() {
+        if($(this).val() == "") {
+          $(this).val($(this).attr("current"));
+        }
+      });
+    });
+    </script>
+  </head>
+  <body>
+    {%with messages = get_flashed_messages()%}
+    {%if messages%}
+    <ul>
+    {%for msg in messages%}
+      <li>{{msg}}</li>
+    {%endfor%}
+    </ul>
+    {%endif%}
+    {%endwith%}
+    <form action="/friends/{{friend[0]["id"]}}" method="post">
+      <table>
+        <thead>
+          <th>Record:</th>
+          <th>Current:</th>
+          <th>New:</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>First Name:</td>
+            <td>{{friend[0]["first_name"]}}</td>
+            <td><input type="text" name="first_name" value="{{friend[0]["first_name"]}}" current="{{friend[0]["first_name"]}}"/></td>
+          </tr>
+          <tr>
+            <td>Last Name</td>
+            <td>{{friend[0]["last_name"]}}</td>
+            <td><input type="text" name="last_name" value="{{friend[0]["last_name"]}}" current="{{friend[0]["last_name"]}}"/></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{friend[0]["email"]}}</td>
+            <td><input type="text" name="email" value="{{friend[0]["email"]}}" current="{{friend[0]["email"]}}"/></td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="submit" value="Save Changes"/>
+    </form>
+  </body>
+</html>

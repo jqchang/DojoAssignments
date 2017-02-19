@@ -1,0 +1,30 @@
+.submit {
+  background-color: navy;
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px black solid;
+}
+
+ul, li {
+  color: red;
+}
+
+th {
+  background-color: #999999;
+}
+
+tr:nth-child(odd) {
+  background-color: #DDDDDD;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+th, td {
+  padding: 3px;
+  border: 1px black solid;
+}

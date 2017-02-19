@@ -1,0 +1,25 @@
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (1045, "Ac
+cess denied for user 'root'@'localhost' (using password: NO)")
+(py2FlaskEnv)
+-> fix: provide correct password
+
+
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (1045, "Ac
+cess denied for user 'admin'@'localhost' (using password: YES)")
+(py2FlaskEnv)
+-> fix: provide correct password and user id
+
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2003, "Ca
+n't connect to MySQL server on '127.0.0.1' (10061)")
+(py2FlaskEnv)
+-> fix: provide correct port #
+
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2003, "Ca
+n't connect to MySQL server on '127.0.0.2' (10061)")
+(py2FlaskEnv)
+-> fix: provide correct ip address
+
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (1046, 'No
+ database selected') [SQL: u'SELECT * FROM countries WHERE countries.id = 1']
+(py2FlaskEnv)
+-> fix: must select the correct database

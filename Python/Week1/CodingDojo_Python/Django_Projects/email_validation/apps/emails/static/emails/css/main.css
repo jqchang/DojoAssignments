@@ -1,0 +1,14 @@
+div {
+  display: inline-block;
+  border: 1px black solid;
+  padding: 10px;
+}
+
+.errors {
+  background-color: red;
+  color: white;
+}
+
+.success {
+  background-color: green;
+}

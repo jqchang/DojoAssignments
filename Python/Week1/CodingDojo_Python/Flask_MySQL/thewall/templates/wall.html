@@ -1,0 +1,89 @@
+<!--
+header
+wrapper
+  messagelevel
+    textarea
+    message
+    commentlevel
+      textarea
+      comment
+
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Wall Assignment</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='wall.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='wall.js')}}"></script>
+    <!-- jinja to-do: replace with dynamic url -->
+  </head>
+  <body>
+    <div class="header">
+      <h1>CodingDojo Wall</h1>
+      <p>Welcome {{user["first_name"]}}</p>
+      <!-- jinja todo: replace with dynamic -->
+      <a href='/logout'>Log out</a>
+    </div>
+    <div class="wrapper">
+      <div class="messagelevel">
+        <div class="entry">
+          Post a message
+          <form action="/message" method="post">
+            <textarea name="text"></textarea>
+            <input type="submit" value="Post"/>
+          </form>
+        </div>
+        {%for message in messages%}
+        <div class="message">
+          <h2>Posted by {{message["first_name"]}} {{message["last_name"]}} - {{message["created_at"]}}
+          {%if message["user_id"] == session["id"]%}
+            {%if message["enable_edit"] == True %}
+            <button id="edit">Edit</button>
+            {%endif%}
+            <form class="controls" action="/delete/message/{{message['id']}}", method="post"><input type="submit" value="Delete"/></form>
+          {%endif%}
+          </h2>
+          <p>{{message["content"]}}</p>
+          <div class="editbox">
+            <form action="/edit/message/{{message['id']}}" method="post">
+              <textarea name="edittext">{{message["content"]}}</textarea>
+              <input type="submit" value="Save changes"/>
+            </form>
+          </div>
+          <div class="commentlevel">
+            {%for comment in message["comments"]%}
+            <div class="comment">
+              <h2>Comment by {{comment["first_name"]}} {{comment["last_name"]}} - {{comment["created_at"]}}
+              {%if comment["user_id"] == session["id"]%}
+              {%if comment["enable_edit"] == True %}
+              <button id="edit">Edit</button>
+              {%endif%}
+                <form class="controls" action="/delete/comment/{{comment['id']}}", method="post"><input type="submit" value="Delete"/></form>
+              {%endif%}
+              </h2>
+              <p>{{comment["content"]}}</p>
+              <div class="editbox">
+                <form action="/edit/comment/{{comment['id']}}" method="post">
+                  <textarea name="edittext">{{comment["content"]}}</textarea>
+                  <input type="submit" value="Save changes"/>
+                </form>
+              </div>
+            </div>
+            {%endfor%}
+            <div class="entry">
+              Post a comment:
+              <form action="/comment/{{message['id']}}" method="post">
+                <textarea name="text"></textarea>
+                <input type="submit" value="Comment"/>
+              </form>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+}
+
+body {
+  text-align: left;
+  width: 100%;
+}
+
+textarea {
+  width: 300px;
+  text-align: left;
+}
+
+div table{
+  display: block;
+  width: 500px;
+  margin: auto;
+  text-align: left;
+  /*border: 1px green solid;*/
+}
+
+form div {
+  display: block;
+  width: 500px;
+  margin: auto;
+  text-align: left;
+  /*border: 1px red solid;*/
+}
+
+div h3{
+  margin: auto;
+  text-align: center;
+}
+
+#submit {
+  background-color: #334444;
+  color: white;
+  box-shadow: 5px 5px 5px black;
+}

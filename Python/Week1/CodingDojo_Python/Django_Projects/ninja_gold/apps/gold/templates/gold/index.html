@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Money</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" type="text/css" href="{%static 'gold/css/main.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{%static 'gold/js/ninjagold.js'%}"></script>
+  </head>
+  <body>
+    Gold: <input type="number" class="gold" value="{{request.session.money}}" readonly>
+    <div class="actionbar">
+      <div>
+        <h1>Farm</h1>
+        (earns 10-20 gold)
+        <form action="/process_money/farm" method="post">
+          {%csrf_token%}
+          <input type="submit" value="Find Gold!"/>
+        </form>
+      </div>
+      <div>
+        <h1>Cave</h1>
+        (earns 5-10 gold)
+        <form action="/process_money/cave" method="post">
+          {%csrf_token%}
+          <input type="submit" value="Find Gold!"/>
+        </form>
+      </div>
+      <div>
+        <h1>House</h1>
+        (earns 2-5 gold)
+        <form action="/process_money/house" method="post">
+          {%csrf_token%}
+          <input type="submit" value="Find Gold!"/>
+        </form>
+      </div>
+      <div>
+        <h1>Casino</h1>
+        (earns/takes 0-50 gold)
+        <form action="/process_money/casino" method="post">
+          {%csrf_token%}
+          <input type="submit" value="Find Gold!"/>
+        </form>
+      </div>
+    </div>
+    Activities:<br>
+    <div class="log">{{request.session.log | safe}}</div>
+  </body>
+</html>

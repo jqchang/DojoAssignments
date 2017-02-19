@@ -1,0 +1,11 @@
+div {
+  display: inline-block;
+  width: 80%;
+  margin: auto;
+}
+
+#submit {
+  background-color: #334444;
+  color: white;
+  box-shadow: 5px 5px 5px black;
+}

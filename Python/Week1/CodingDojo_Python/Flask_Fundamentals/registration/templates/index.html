@@ -19,68 +19,62 @@
     </div>
     <form action="/submit" method="post">
       <table>
-          <tbody>
-            <tr>
-              <td>First Name:</td>
-              <td><input type="text" name="first_name"/></td>
-              <td>
-                {%with f_errors = get_flashed_messages(category_filter=["fname"])%}
-                {%if f_errors%}
-                  {{f_errors[0]}}
-                {%endif%}
-                {%endwith%}
-              </td>
-            </tr>
-            <tr>
-              <td>Last Name:</td>
-              <td><input type="text" name="last_name"/></td>
-              <td>
-                {%with l_errors = get_flashed_messages(category_filter=["lname"])%}
-                {%if l_errors%}
-                  {{l_errors[0]}}
-                {%endif%}
-                {%endwith%}
-              </td>
-            </tr>
-            <tr>
-              <td>Email:</td>
-              <td><input type="text" name="email"/></td>
-              <td>
-                {%with e_errors = get_flashed_messages(category_filter=["em_error"])%}
-                {%if e_errors%}
-                  {{e_errors[0]}}
-                {%endif%}
-                {%endwith%}
-              </td>
-            </tr>
-            <tr>
-              <td>Password:</td>
-              <td><input type="password" name="password"/></td>
-              <td>
-                {%with p_errors = get_flashed_messages(category_filter=["pword"])%}
-                {%if p_errors%}
-                  {{p_errors[0]}}
-                {%endif%}
-                {%endwith%}
-              </td>
-            </tr>
-            <tr>
-              <td>Confirm Password:</td>
-              <td><input type="password" name="confirm_password"/></td>
-              <td>
-                {%with c_errors = get_flashed_messages(category_filter=["pconfirm"])%}
-                {%if c_errors%}
-                  {{c_errors[0]}}
-                {%endif%}
-                {%endwith%}
-              </td>
-            </tr>
-            <!-- <tr>
-              <td>Date of Birth</td>
-              <td><input type="text" name="date_of_birth"/></td>
-              <td>
-              </td>
-            </tr> -->
+        <tbody>
+          <tr>
+            <td>First Name:</td>
+            <td><input type="text" name="first_name"/></td>
+            <td>
+              {%with f_errors = get_flashed_messages(category_filter=["fname"])%}
+              {%if f_errors%}
+                {{f_errors[0]}}
+              {%endif%}
+              {%endwith%}
+            </td>
+          </tr>
+          <tr>
+            <td>Last Name:</td>
+            <td><input type="text" name="last_name"/></td>
+            <td>
+              {%with l_errors = get_flashed_messages(category_filter=["lname"])%}
+              {%if l_errors%}
+                {{l_errors[0]}}
+              {%endif%}
+              {%endwith%}
+            </td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email"/></td>
+            <td>
+              {%with e_errors = get_flashed_messages(category_filter=["em_error"])%}
+              {%if e_errors%}
+                {{e_errors[0]}}
+              {%endif%}
+              {%endwith%}
+            </td>
+          </tr>
+          <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password"/></td>
+            <td>
+              {%with p_errors = get_flashed_messages(category_filter=["pword"])%}
+              {%if p_errors%}
+                {{p_errors[0]}}
+              {%endif%}
+              {%endwith%}
+            </td>
+          </tr>
+          <tr>
+            <td>Confirm Password:</td>
+            <td><input type="password" name="confirm_password"/></td>
+            <td>
+              {%with c_errors = get_flashed_messages(category_filter=["pconfirm"])%}
+              {%if c_errors%}
+                {{c_errors[0]}}
+              {%endif%}
+              {%endwith%}
+            </td>
+          </tr>
         </tbody>
       </table>
       <input type="submit" class="submit" value="Submit">

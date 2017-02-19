@@ -1,0 +1,23 @@
+1) pip install Django
+- Downloads the package "Django" and then installs the latest version available
+
+2) pip list
+- Lists the installed packages (version numbers in parentheses)
+
+3) pip install Django
+- Tells you it's already installed (requirement already satisfied)
+
+4) pip freeze
+Django==1.10.5
+
+5) pip freeze > requirements.txt
+outputs the text into a text file (Google search shows this can be used as install instructions)
+
+6) pip uninstall Django
+outputs a big list of files that will be uninstalled
+
+7) pip show Django
+Shows human-friendly info about the package, including its requirements
+
+8) pip search flask
+Shows a large list of packages with the keyword 'flask'

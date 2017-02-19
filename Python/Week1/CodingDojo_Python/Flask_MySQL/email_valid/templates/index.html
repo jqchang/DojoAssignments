@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>email form</title>
+  </head>
+  <body>
+    <form action="/submit" method="post">
+      <input type="text" name="email" id="email"/>
+      <input type="submit" name="submit" id="submit" value="Submit"/>
+      <div class="error">
+        <ul>
+          {%with messages = get_flashed_messages(category_filter=["messages"])%}
+          {%if messages%}
+            {%for message in messages%}
+              <li>{{message}}</li>
+            {%endfor%}
+          {%endif%}
+          {%endwith%}
+        </ul>
+      </div>
+    </form>
+    
+  </body>
+</html>

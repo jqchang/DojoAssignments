@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Success!</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" type="text/css" href="{%static 'emails/css/main.css'%}">
+  </head>
+  <body>
+    {%if messages%}
+    <div class="success">
+      {%for msg in messages%}
+      <p>{{msg}}</p>
+      {%endfor%}
+    </div>
+    {%endif%}
+    <h4>Email Addresses Entered:</h4>
+    <table>
+      <tbody>
+        {%for em in email_list%}
+        <tr>
+          <td>{{em.email}}</td>
+          <td>{{em.created_at}}</td>
+          <td><form action='delete/{{em.id}}' method='post'>{%csrf_token%}<input type='submit' value="Delete"></form></td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    <a href='/'>Go Back</a>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    You successfully registered the email "{{useremail}}".<br>
+    Email addresses entered:
+    <table>
+      <tbody>
+        {%for emails in allemails%}
+        <tr>
+          <td>{{emails["email"]}}</td>
+          <td>{{emails["created_at"]}}</td>
+          {%if emails["id"] == session["id"]%}
+          <td><a href="/delete">Delete</a></td>
+          {%endif%}
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </body>
+</html>

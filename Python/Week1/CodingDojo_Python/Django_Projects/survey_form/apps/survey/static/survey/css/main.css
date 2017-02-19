@@ -1,0 +1,19 @@
+body {
+  width: 100%;
+  text-align: center;
+}
+
+div {
+  display: inline-block;
+  margin: auto;
+  text-align: left;
+  width: 40%;
+  border: black 1px solid;
+  padding: 10px;
+  margin: 10px;
+}
+
+.thanks {
+  display: inline-block;
+  background-color: #99CCAA;
+}

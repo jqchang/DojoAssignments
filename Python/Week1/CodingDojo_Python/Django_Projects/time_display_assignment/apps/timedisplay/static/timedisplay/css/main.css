@@ -1,0 +1,17 @@
+div {
+  display: dblock;
+  border: black 1px solid;
+  text-align: center;
+  margin: auto;
+}
+
+.header {
+  padding: 5px;
+  width: 20%;
+}
+
+.wrapper {
+  width: 60%;
+  padding: 0px 30px 5px 30px;
+  margin-top: 20px;
+}
