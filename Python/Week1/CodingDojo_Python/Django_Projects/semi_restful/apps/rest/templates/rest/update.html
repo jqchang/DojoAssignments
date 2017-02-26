@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Product {{product.id}} | Semi Restful Route Demo</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" type="text/css" href="{%static 'rest/css/main.css'%}">
+  </head>
+  <body>
+    {%if messages%}
+    <ul>
+    {%for msg in messages%}
+    <li>{{msg}}</li>
+    {%endfor%}
+    </ul>
+    {%endif%}
+    <h1>Edit Product {{ID}}</h1>
+    <form action='/products/{{product.id}}/update' method='POST'>
+      {%csrf_token%}
+      <ul class='listform'>
+      <li><label for='name'>Name:</label></li>
+      <li><input type='text' id='name' name='name' value='{{product.name}}'></li>
+      <li><label for='description'>Description:</label></li>
+      <li><input type='text' id='description' name='description' value='{{product.description}}'></li>
+      <li><label for='price'>Price ($):</label></li>
+      <li><input type='text' id='price' name='price' value='{{product.price}}'></li>
+      <li><input type='submit' value='Update'/></li>
+    </ul>
+    </form>
+    <a href='/products/{{product.id}}'>Show</a> | <a href='/products'>Back</a>
+  </body>
+</html>

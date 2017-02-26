@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>All Product | Semi Restful Route Demo</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" type="text/css" href="{%static 'rest/css/main.css'%}">
+  </head>
+  <body>
+    {%if messages%}
+    <ul>
+    {%for msg in messages%}
+    <li>{{msg}}</li>
+    {%endfor%}
+    </ul>
+    {%endif%}
+    <h1>Products</h1>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        {%for product in products%}
+        <tr>
+          <td>{{product.name}}</td>
+          <td>{{product.description}}</td>
+          <td>${{product.price|floatformat:"2"}}</td>
+          <td><a href='/products/{{product.id}}'>Show</a> | <a href='/products/{{product.id}}/edit'>Edit</a> | <form class='submit' action='/products/{{product.id}}/destroy' method='post'>{%csrf_token%}<input type='submit' value='Remove'></form></td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    <a href='/products/new'>Add a new product</a>
+  </body>
+</html>
