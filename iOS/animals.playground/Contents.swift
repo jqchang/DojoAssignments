@@ -57,7 +57,7 @@ class Lion:Cat {
     }
 }
 
-func provoke(target:Cat) {
+func provoke(target: inout Cat) {
     target.growl()
 }
 
@@ -72,3 +72,5 @@ for _ in 1...3 {
     simba.run()
 }
 simba.growl()
+
+provoke(target: &simba)
