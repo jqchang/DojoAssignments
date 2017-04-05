@@ -1,0 +1,13 @@
+ul {
+  vertical-align: top;
+}
+
+li {
+  display: inline;
+  vertical-align: top;
+}
+
+img {
+  width: 200px;
+  height: auto;
+}
