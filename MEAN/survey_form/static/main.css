@@ -1,0 +1,9 @@
+table {
+  display: block;
+}
+textarea {
+  display: block;
+}
+select {
+  width: 100%;
+}
