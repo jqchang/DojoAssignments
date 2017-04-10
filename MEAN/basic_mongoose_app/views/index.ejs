@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form action='/users' method='post'>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td><input type='text' name='name'></td>
+        </tr>
+        <tr>
+          <td>Age:</td>
+          <td><input type='text' name='age'></td>
+        </tr>
+      </table>
+      <p>Users:</p>
+      <ul>
+        <% for(var i in users) {%>
+        <li><%= users[i].name %>, age <%=users[i].age%></li>
+        <%}%>
+      </ul>
+      <input type='submit'>
+    </form>
+  </body>
+</html>
