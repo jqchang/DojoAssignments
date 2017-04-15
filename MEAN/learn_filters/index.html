@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app='colors'>
+  <head>
+    <meta charset="utf-8">
+    <title>Color Picker</title>
+    <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script type='text/javascript'>
+    var colors = angular.module('colors', []);
+    colors.controller('colorController', function($scope, $http) {
+      $http.get('https://gist.githubusercontent.com/jjdelc/1868136/raw/c9160b1e60bd8c10c03dbd1a61b704a8e977c46b/crayola.json',{}).then(function(response) {
+        $scope.colorList = response.data;
+      }, function() {
+        $scope.errormsg = "Error: Could not load crayola.json"
+      })
+    });
+    console.log("Script running!");
+    </script>
+    <style>
+    .colorblock {
+      height: 20px;
+      width: 200px;
+      background-color: none;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px black solid;
+    }
+    </style>
+  </head>
+  <body ng-controller='colorController'>
+    <input type='text' placeholder="filter..." ng-model='color_filter'>
+    <p ng-if='errormsg' ng-bind='errormsg'></p>
+    <table>
+      <thead>
+        <th>Color Name</th>
+        <th>Hex</th>
+        <th>Color</th>
+        <th>RGB</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat='c in colorList | filter:color_filter'>
+          <td ng-bind='c.name'></td>
+          <td ng-bind='c.hex'></td>
+          <td><div class='colorblock' ng-style="{'background-color': 'rgb{{c.rgb}}'}"></div></td>
+          <td ng-bind='c.rgb' ng-style="{'text-align':'center'}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

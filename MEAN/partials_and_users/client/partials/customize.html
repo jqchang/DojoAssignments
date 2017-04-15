@@ -1,0 +1,42 @@
+<fieldset ng-controller='CustomizeUsersController'>
+  <legend>Customize</legend>
+  <form ng-submit="add()">
+    <table>
+      <tbody>
+        <tr>
+          <td>First Name</td>
+          <td><input type='text' ng-model='newUser.fName'></td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td><input type='text' ng-model='newUser.lName'></td>
+        </tr>
+        <tr>
+          <td>Favorite Language</td>
+          <td><input type='text' ng-model='newUser.lang'></td>
+          <td><input type='submit'></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <ul class='errorlist' ng-if='errors.length'>
+    <li ng-repeat='error in errors'>{{error}}</li>
+  </ul>
+  <table class='userlist'>
+    <thead>
+      <th ng-click='order("fName")'>First Name<span ng-if='ordering=="fName"'>(^)</span><span ng-if='ordering=="-fName"'>(v)</span></th>
+      <th ng-click='order("lName")'>Last Name<span ng-if='ordering=="lName"'>(^)</span><span ng-if='ordering=="-lName"'>(v)</span></th>
+      <th ng-click='order("lang")'>Favorite Language<span ng-if='ordering=="lang"'>(^)</span><span ng-if='ordering=="-lang"'>(v)</span></th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in userList | orderBy:ordering track by $index">
+        <td ng-bind="user.fName"></td>
+        <td ng-bind="user.lName"></td>
+        <td ng-bind="user.lang"></td>
+        <td><button ng-click="delete(user)">Delete User</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</fieldset>

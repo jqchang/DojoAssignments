@@ -1,0 +1,15 @@
+<fieldset ng-controller='ShowTeamController'>
+  <legend ng-bind="team.teamname"></legend>
+  <table class='playerlist'>
+    <thead>
+      <th ng-click='order("name")'>Name<span ng-if='ordering=="name"'>(^)</span><span ng-if='ordering=="-name"'>(v)</span></th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="player in playerList | filter:team.teamname | orderBy:ordering track by $index">
+        <td ng-bind="player.name"></td>
+        <td><button ng-click="clear(player)">Remove from Team</button></td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>

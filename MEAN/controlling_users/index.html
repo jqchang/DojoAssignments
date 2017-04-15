@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app='users'>
+  <head>
+    <meta charset="utf-8">
+    <title>Users Controller</title>
+    <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script type='text/javascript'>
+      var userModule = angular.module('users', []);
+      userModule.controller('userController', function($scope) {
+        $scope.userList = [
+          {fName: 'Test', lName: 'User', lang:'C++'}
+        ];
+        $scope.deleteIndex = function(num) {
+          $scope.userList.splice(num, 1);
+        }
+        $scope.addUser = function() {
+          // Validation? Avoid duplicates as object and also avoid redundant error messages?
+          if($scope.newUser) {
+            if($scope.newUser.fName && $scope.newUser.lName && $scope.newUser.lang){
+              $scope.userList.push($scope.newUser);
+              $scope.newUser = {};
+            }
+          }
+        }
+      });
+    </script>
+    <style type='text/css'>
+    </style>
+  </head>
+  <body ng-controller='userController'>
+    <fieldset>
+      <legend>Users Controller</legend>
+      <form ng-submit='addUser()'>
+        <table>
+          <tbody>
+            <tr>
+              <td>First Name</td>
+              <td><input type='text' ng-model='newUser.fName'></td>
+            </tr>
+            <tr>
+              <td>Last Name</td>
+              <td><input type='text' ng-model='newUser.lName'></td>
+            </tr>
+            <tr>
+              <td>Favorite Lanugage</td>
+              <td><input type='text' ng-model='newUser.lang'></td>
+              <td><input type='submit' value='Create User' ng-click='addUser()'></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      <p ng-if='errormsg' ng-bind='errormsg'></p>
+      <table>
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Fav Language</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat='user in userList track by $index'>
+            <td>{{user.fName}}</td>
+            <td>{{user.lName}}</td>
+            <td>{{user.lang}}</td>
+            <td><button ng-click='deleteIndex($index)'>Delete User</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </body>
+</html>

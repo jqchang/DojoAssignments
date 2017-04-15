@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app='food'>
+  <head>
+    <meta charset="utf-8">
+    <title>Food list</title>
+    <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script type='text/javascript'>
+      var foodModule = angular.module('food',[]);
+      foodModule.controller('foodController', function($scope) {
+        $scope.foodList = ['Pizza', 'BBQ', 'Fries', 'Salad', 'Steak'];
+        $scope.addFood = function () {
+          if($scope.add_food != "") {
+            $scope.foodList.push($scope.add_food);
+            $scope.add_food = "";
+          }
+        }
+      });
+    </script>
+    <style>
+      #add {
+        vertical-align: top;
+        display: inline-block;
+        width: 70%;
+      }
+      #list {
+        display: inline-block;
+        width: 25%;
+
+      }
+      #list ul {
+        border: 1px black solid;
+        height: 600px;
+        padding-top: 5px;
+        padding-left: 5px;
+      }
+      #list ul li {
+        list-style-type: none;
+      }
+    </style>
+  </head>
+  <body ng-controller='foodController'>
+    <div id='add' ng-init="label='filter...'">
+      <form ng-submit='addFood()'>
+        Favorite food
+        <input type='text' ng-model='add_food'>
+        <input type='submit' value='Add Food' ng-show='add_food' ng-click='addFood()'>
+        <p ng-if='add_food'>Currently typing: <span ng-bind='add_food'></span></p>
+      </form>
+    </div>
+    <div id='list'>
+      <input type='text' placeholder='{{label}}' ng-model='food_filter'>
+      <ul>
+        <li ng-repeat="food in foodList| filter: food_filter track by $index">{{food}}</li>
+      </ul>
+    </div>
+  </body>
+</html>

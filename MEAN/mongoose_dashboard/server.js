@@ -22,7 +22,8 @@ mongoose.connect('mongodb://localhost/mongoose_dashboard')
 
 var PokemonSchema = new mongoose.Schema({
   name: {type: String, required: true},
-  type: {type: String, required: true, maxlength: 100},
+  types: [{type: String, maxlength: 20}],
+  moves: [{type: String, maxlength: 20}],
 }, {timestamps: true});
 
 mongoose.model('Pokemon', PokemonSchema);
@@ -39,6 +40,21 @@ app.get('/', function(req, res) {
   })
 });
 
+// GET '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
+app.get('/pokemon/edit/:id', function(req, res){
+  console.log(req.params.id);
+  Pokemon.findOne({_id:req.params.id}, function(err, pkmn) {
+    console.log("checkpoint 1")
+    if(err) {
+      console.log("error in READ:id")
+    } else {
+      console.log("attempting to send view");
+      console.log(pkmn);
+      res.render('edit', {pkmn:pkmn});
+    }
+  })
+});
+
 // GET '/mongooses/new' Displays a form for making a new mongoose.
 app.get('/pokemon/new', function(req, res) {
   res.render('new');
@@ -47,16 +63,70 @@ app.get('/pokemon/new', function(req, res) {
 // GET '/mongooses/:id' Displays information about one mongoose.
 app.get('/pokemon/:id', function(req, res){
   console.log(req.params.id);
+  Pokemon.findOne({_id:req.params.id}, function(err, pkmn) {
+    console.log("checkpoint 1")
+    if(err) {
+      console.log("error in READ:id")
+    } else {
+      console.log("attempting to send view");
+      console.log(pkmn);
+      res.render('view', {pkmn:pkmn});
+    }
+  })
 });
 
+// POST '/mongooses' Should be the action attribute for the form in the above route (GET '/mongooses/new').
+app.post('/pokemon', function(req, res) {
+  console.log("POST DATA", req.body);
+      // This is where we would add the user from req.body to the database.
+  var pkmn = new Pokemon({name: req.body.name, types: [req.body.type1, req.body.type2], moves:[req.body.move1,req.body.move2,req.body.move3,req.body.move4]});
 
+  pkmn.save(function(err){
+    if(err) {
+      console.log('something went wrong in post /submit save');
+    } else {
+      console.log('successfully added a quote!');
+      res.redirect('/');
+    }
+  })
+});
 
-/*
-POST '/mongooses' Should be the action attribute for the form in the above route (GET '/mongooses/new').
-GET '/mongooses/edit/:id' Should show a form to edit an existing mongoose.
-POST '/mongooses/:id' Should be the action attribute for the form in the above route (GET '/mongooses/edit/:id').
-POST '/mongooses/destroy/:id' Should delete the mongoose from the database by ID.
-*/
+// POST '/mongooses/:id' Should be the action attribute for the form in the above route (GET '/mongooses/edit/:id').
+app.post('/pokemon/:id', function(req, res) {
+  console.log("POST DATA", req.body);
+      // This is where we would add the user from req.body to the database.
+  Pokemon.findOne({_id:req.params.id}, function(err, pkmn) {
+    if(err) {
+      console.log("error in UPDATE:id")
+    }
+    else {
+      pkmn.name = req.body.name;
+      pkmn.types = [req.body.type1, req.body.type2];
+      pkmn.moves = [req.body.move1, req.body.move2, req.body.move3, req.body.move4];
+      pkmn.save(function(err) {
+        if(err) {
+          console.log('error in UPDATE:id post-find')
+        }
+        else {
+          res.redirect(`/pokemon/${req.params.id}`)
+        }
+      });
+    }
+  });
+});
+
+// POST '/mongooses/destroy/:id' Should delete the mongoose from the database by ID.
+app.post('/pokemon/destroy/:id', function(req, res) {
+  Pokemon.deleteOne({_id:req.params.id}, function(err, pkmn) {
+    if(err) {
+      console.log("error in DELETE:id")
+    }
+    else {
+      res.redirect('/')
+    }
+  })
+})
+
 
 // Setting our Server to Listen on Port: 8000
 app.listen(8000, function() {

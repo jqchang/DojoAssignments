@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>Players and teams</title>
+    <script src="/angular/angular.js" charset="utf-8"></script>
+    <script src="/angular-route/angular-route.js" charset="utf-8"></script>
+    <script src="app.js"></script>
+    <style>
+    .userlist {
+      border-collapse: collapse;
+    }
+    .userlist td, .userlist th {
+      border: 1px black solid;
+    }
+    .errorlist li {
+      color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <a href='#!'>Players</a>
+    <a href='#!/teams'>Teams</a>
+    <a href='#!/associations'>Associations</a>
+    <div ng-view></div>
+  </body>
+</html>

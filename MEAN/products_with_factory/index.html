@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html ng-app='products'>
+  <head>
+    <meta charset="utf-8">
+    <title>Products with a Factory</title>
+    <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script>
+      var prodModule = angular.module('products', []);
+      prodModule.factory('productFactory', function() {
+        var products = [
+          {name: 'Ninja', price:64.99, qty:50},
+          {name: 'Samurai', price:49.99, qty: 50}
+        ];
+        var factory = {};
+        factory.getProducts = function(callback) {
+          callback(products);
+        }
+        factory.deleteProduct = function(num) {
+          products.splice(num, 1);
+        }
+        factory.addProduct = function(prod) {
+          if(prod) {
+            if(prod.name && prod.price) {
+              if(isNaN(Number(prod.price))) {
+                return "Price must be a number!";
+              }
+              else {
+                prod.qty = 50;
+                products.push(prod);
+                return false;
+              }
+            }
+          }
+          else return "Please enter a product!";
+        }
+        return factory;
+      });
+      prodModule.controller('productController', ['$scope', 'productFactory', function($scope, productFactory) {
+        $scope.productList = [{name:"Loading...", price:0}];
+        productFactory.getProducts(function(data) {
+          $scope.productList = data;
+        });
+        $scope.add = function() {
+          $scope.nanError = productFactory.addProduct($scope.newProduct);
+          $scope.newProduct = {};
+        }
+        $scope.remove = function(num) {
+          productFactory.deleteProduct(num);
+        };
+      }]);
+      prodModule.controller('orderController', ['$scope', 'productFactory', function($scope, productFactory) {
+        $scope.productList = [[{name:"Loading...", price:0}]];
+        productFactory.getProducts(function(data) {
+          $scope.productList = data;
+        });
+        $scope.buy = function(num) {
+
+        }
+      }]);
+    </script>
+  </head>
+  <body>
+    <fieldset ng-controller='productController'>
+      <legend>Products Controller</legend>
+      <form ng-submit='add()'>
+        <table>
+          <tbody>
+            <tr>
+              <td>Product Name:</td>
+              <td><input type='text' ng-model='newProduct.name'></td>
+            </tr>
+            <tr>
+              <td>Product Price:</td>
+              <td><input type='text' ng-model='newProduct.price'></td>
+              <td><input type='submit' value='Add Product'></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      <p ng-if='nanError' ng-bind='nanError'></p>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat='product in productList | orderBy:price'>
+            <td ng-bind='product.name'></td>
+            <td ng-bind='product.price | currency:"$"'></td>
+            <td><button ng-click='remove($index)'>Delete Product</td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+    <fieldset ng-controller='orderController'>
+      <legend>Orders Controller</legend>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat='product in productList | orderBy:price'>
+            <td ng-bind='product.name'></td>
+            <td ng-bind='product.price | currency:"$"'></td>
+            <td><button ng-click='remove($index)'>Delete Product</td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </body>
+</html>

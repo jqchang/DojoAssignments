@@ -1,0 +1,17 @@
+<fieldset ng-controller='UserListsController'>
+  <legend>Users Controller</legend>
+  <table class='userlist'>
+    <thead>
+      <th ng-click='order("fName")'>First Name<span ng-if='ordering=="fName"'>(^)</span><span ng-if='ordering=="-fName"'>(v)</span></th>
+      <th ng-click='order("lName")'>Last Name<span ng-if='ordering=="lName"'>(^)</span><span ng-if='ordering=="-lName"'>(v)</span></th>
+      <th ng-click='order("lang")'>Favorite Language<span ng-if='ordering=="lang"'>(^)</span><span ng-if='ordering=="-lang"'>(v)</span></th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in userList | orderBy:ordering track by $index">
+        <td ng-bind="user.fName"></td>
+        <td ng-bind="user.lName"></td>
+        <td ng-bind="user.lang"></td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>

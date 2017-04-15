@@ -1,0 +1,29 @@
+<fieldset ng-controller='PlayersController'>
+  <legend>Players</legend>
+  <form ng-submit="add()">
+    <table>
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td><input type='text' ng-model='newPlayer.name'></td>
+          <td><input type='submit'></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <ul class='errorlist' ng-if='errors.length'>
+    <li ng-repeat='error in errors'>{{error}}</li>
+  </ul>
+  <table class='playerlist'>
+    <thead>
+      <th ng-click='order("name")'>Name<span ng-if='ordering=="name"'>(^)</span><span ng-if='ordering=="-name"'>(v)</span></th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="player in playerList | orderBy:ordering track by $index">
+        <td ng-bind="player.name"></td>
+        <td><button ng-click="delete(player)">Delete Player</button></td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>

@@ -1,0 +1,38 @@
+<fieldset ng-controller='AssociationsController'>
+  <legend>Associations</legend>
+  <form ng-submit="addToTeam()">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <select ng-model='player' ng-options="player.name for player in playerList">
+              <option></option>
+            </select>
+          </td>
+          <td>
+            <select ng-model='team' ng-options="team.name for team in teamList">
+              <option></option>
+            </select>
+          </td>
+          <td><input type='submit' value="Assign Player to Team"></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <ul class='errorlist' ng-if='errors.length'>
+    <li ng-repeat='error in errors'>{{error}}</li>
+  </ul>
+  <table class='playerlist'>
+    <thead>
+      <th ng-click='order("name")'>Name<span ng-if='ordering=="name"'>(^)</span><span ng-if='ordering=="-name"'>(v)</span></th>
+      <th ng-click='order("team")'>Team<span ng-if='ordering=="team"'>(^)</span><span ng-if='ordering=="-team"'>(v)</span></th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="p in playerList | orderBy:ordering track by $index">
+        <td ng-bind="p.name"></td>
+        <td ng-bind="p.team.name"></td>
+        <td><button ng-click="clear(p)">Clear Assignment</button></td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>
